@@ -13,21 +13,21 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(){
+  login() {
     this.authService.login(this.model).subscribe(next => {
-      console.log("Successfull login");
+      console.log('Successfull login');
     },
     error => {
-      console.log("Failed to login");
+      console.log(error);
     });
   }
 
-  loggenIn(){
+  loggedIn() {
     const token = localStorage.getItem('token');
     return !!token;
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     console.log('logged out');
   }
