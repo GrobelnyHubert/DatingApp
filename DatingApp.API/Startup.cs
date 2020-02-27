@@ -56,7 +56,7 @@ namespace DatingApp.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
+            }else {
              app.UseExceptionHandler(builder => {
                     builder.Run(async context => {
 
@@ -69,7 +69,7 @@ namespace DatingApp.API
                         }
                     });
                 });
-            
+            }
 
             // app.UseHttpsRedirection();
 
