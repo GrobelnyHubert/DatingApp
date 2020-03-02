@@ -23,8 +23,8 @@
         </div>
         <div class="card-footer">
           <div class="btn-group d-flex">
-            <button class="btn btn-inf btn-like w-100">Like</button>
-            <button class="btn btn-success btn-message w-100">Message</button>
+            <button class="btn btn-inf btn-primary w-100">Like</button>
+            <button class="btn btn-success btn-success w-100">Message</button>
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
             </tab>
             <tab heading="Interests">
               <h4>Interests</h4>
-              <p>{{user.interest}}</p>
+              <p>{{user.interests}}</p>
             </tab>
             <tab heading="Photos">
               <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>

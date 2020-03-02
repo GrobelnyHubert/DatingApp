@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-@import '../node_modules/bootswatch/dist/slate/bootstrap.min.css';
+@import '../node_modules/bootswatch/dist/Flatly/bootstrap.min.css';
 @import '../node_modules/font-awesome/css/font-awesome.min.css';
 @import '../node_modules/alertifyjs/build/css/alertify.min.css';
 @import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
@@ -44,8 +44,24 @@
   
   .member-tabset > .tab-content {
     margin-top: -3px;
-    background-color: #222;
     border: 0;
     border-top: 1px solid #eee;
     padding: 15px 0;
   }
+  .btn-like {
+    background-image: linear-gradient(#4b5d82, #2d436f 59%, #35538e);
+}
+.btn-like:hover { 
+    background-image: linear-gradient(#364158, #2d436f 40%, #2b3d54);
+    color: #fff
+}
+.btn-message {
+    background-image: linear-gradient(#2d6f2d, #3c923c 60%, #387d38);
+    color: #aaa;
+}
+.btn-message:hover {
+    color: #fff;
+}
+.alert-info {
+  background-color: #2b5b69;
+}

@@ -1,3 +1,8 @@
+.edit-bg{
+    width: 100%;
+    background-color: unset;
+    color: #ccc;
+}
 .img-thumbanil {
     margin: 25px;
     width: 85%;
