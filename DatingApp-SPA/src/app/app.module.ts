@@ -26,6 +26,7 @@ import { MemberDetailsComponent } from './members/member-details/member-details.
 import { MemberDatailResolver } from './_resolvers/member-detals.resolver';
 import { MemberListResolver } from './_resolvers/member-list.resolver';
 import { MemberEditResolver } from './_resolvers/member-edit.resolver';
+import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guards';
 
 
 
@@ -74,7 +75,8 @@ export function tokenGetter() {
       AlertiftyService,
       MemberDatailResolver,
       MemberListResolver,
-      MemberEditResolver
+      MemberEditResolver,
+      PreventUnsavedChanges
    ],
    bootstrap: [
       AppComponent
