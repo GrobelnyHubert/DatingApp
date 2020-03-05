@@ -37,4 +37,7 @@ export class MemberEditComponent implements OnInit {
       this.alerityfy.error(error);
     });
   }
+  updateMainPhoto(photoUrl) {
+    this.user.photoUrl = photoUrl;
+  }
 }
