@@ -16,8 +16,7 @@ export class PhotoEditorComponent implements OnInit {
   @Output() getMemberPhotoChange = new EventEmitter<string>();
 
   uploader: FileUploader;
-  hasBaseDropZoneOver = false;
-  hasAnotherDropZoneOver  = true;
+  hasBaseDropZoneOver: boolean;
   baseUrl = environment.apiUrl;
   currentMain: Photo;
 
@@ -37,15 +36,16 @@ export class PhotoEditorComponent implements OnInit {
     this.uploader = new FileUploader({
       url: this.baseUrl + 'users/' + this.authService.decodedToken.nameid + '/photos',
       authToken: 'Bearer ' + localStorage.getItem('token'),
-      disableMultipart: true,
       isHTML5: true,
       allowedFileType: ['image'],
       removeAfterUpload: false,
       autoUpload: false,
-      maxFileSize: 10 * 1024 * 1024
+      maxFileSize: 10 * 1024 * 1024,
     });
-    console.log(this.uploader);
 
+    this.hasBaseDropZoneOver = false;
+    this.response = '';
+    this.uploader.response.subscribe( res => this.response = res);
     this.uploader.onAfterAddingFile = (file) => {file.withCredentials = false; };
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
@@ -67,9 +67,22 @@ export class PhotoEditorComponent implements OnInit {
     this.currentMain = this.photos.filter(p => p.isMain === true)[0];
     this.currentMain.isMain = false;
     photo.isMain = true;
-    this.getMemberPhotoChange.emit(photo.url);
+    this.authService.changeMemberPhoto(photo.url);
+    this.authService.currentUser.photoUrl = photo.url;
+    localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
     }, error => {
       this.alertify.error(error);
+    });
+  }
+
+  detelePhoto(id: number) {
+    this.alertify.confirm('Are you sure you want to delete this photo?', () => {
+      this.userSerive.deletePhoto(this.authService.decodedToken.nameid, id).subscribe(() => {
+        this.photos.splice(this.photos.findIndex(p => p.id === id), 1);
+        this.alertify.success('Photo has been deleted');
+      }, error => {
+        this.alertify.error('Failed to delete the photo');
+      });
     });
   }
 

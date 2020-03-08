@@ -15,6 +15,8 @@ export class MemberEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private alerityfy: AlertiftyService,
               private userService: UserService, private authService: AuthService) { }
+  user: User;
+  photoUrl: string;
   @ViewChild('editForm',  {static: true}) editForm: NgForm;
   @HostListener('window:beforeunload', ['$event'])
   unloadNotification($event: any) {
@@ -22,11 +24,12 @@ export class MemberEditComponent implements OnInit {
         $event.returnValue = true;
     }
   }
-  user: User;
   ngOnInit() {
     this.route.data.subscribe(data => {
+      // tslint:disable-next-line: no-string-literal
       this.user = data['user'];
     });
+    this.authService.currentPhotoUrl.subscribe(photoUrl => this.photoUrl = photoUrl);
   }
 
   updateUser() {
