@@ -18,15 +18,11 @@ export class RegisterComponent implements OnInit {
   user: User;
   @Output() cancelRegister = new EventEmitter();
   registerForm: FormGroup;
-  bsConfig: Partial<BsDatepickerConfig>;
 
   constructor(private authService: AuthService, private alertify: AlertiftyService,
      private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
-    this.bsConfig = {
-      containerClass: 'theme-dark-blue'
-    }
     this.createRegisterForm();
   }
 
