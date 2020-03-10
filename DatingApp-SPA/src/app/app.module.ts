@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
@@ -50,7 +51,8 @@ export function tokenGetter() {
       MemberCardComponent,
       MemberDetailsComponent,
       MemberEditComponent,
-      PhotoEditorComponent
+      PhotoEditorComponent,
+      TimeAgoPipe
    ],
    imports: [
       BrowserModule,
