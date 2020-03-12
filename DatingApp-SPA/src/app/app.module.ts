@@ -31,6 +31,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { FileUploadModule } from 'ng2-file-upload';
 import { ListsResolver } from './_resolvers/lists.resolvers';
 import { MessagesResolver } from './_resolvers/messages.resolvers';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 
 
 
@@ -52,7 +53,8 @@ export function tokenGetter() {
       MemberCardComponent,
       MemberDetailsComponent,
       MemberEditComponent,
-      PhotoEditorComponent
+      PhotoEditorComponent,
+      MemberMessagesComponent
    ],
    imports: [
       BrowserModule,
