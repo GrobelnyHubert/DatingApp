@@ -30,9 +30,9 @@ import { PreventUnsavedChanges } from './_guards/prevent-unsaved-changes.guards'
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { FileUploadModule } from 'ng2-file-upload';
 import { ListsResolver } from './_resolvers/lists.resolvers';
-import { MessagesResolver } from './_resolvers/messages.resolvers';
+import { MessagesResolver } from './_resolvers/messages.resolver';
 import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
-
+import { TimeagoModule } from 'ngx-timeago';
 
 
 
@@ -64,6 +64,7 @@ export function tokenGetter() {
       FormsModule,
       ReactiveFormsModule,
       BrowserAnimationsModule,
+      TimeagoModule.forRoot(),
       BsDatepickerModule.forRoot(),
       PaginationModule.forRoot(),
       BsDropdownModule.forRoot(),

@@ -4,8 +4,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../_models/user';
 import { PaginatedResult } from '../_models/Pagination';
-import { map } from 'rxjs/operators';
 import { Message } from '../_models/message';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({

@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { JwtHelperService} from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { User } from '../_models/user';
+import { Message } from '../_models/message';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ decodedToken: any;
 currentUser: User;
 photoUrl = new BehaviorSubject<string>('../../assets/user.png');
 currentPhotoUrl = this.photoUrl.asObservable();
+messages: Message[];
 
 constructor(private http: HttpClient) { }
 

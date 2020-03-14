@@ -13,7 +13,7 @@ export class MessagesResolver implements Resolve<Message[]> {
     pageNumber = 1;
     pageSize = 5;
     messageContainer = 'Unread';
-    constructor(private userService: UserService, private router: Router, 
+    constructor(private userService: UserService, private router: Router,
                 private alertyfy: AlertiftyService, private authSerive: AuthService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Message[]> {

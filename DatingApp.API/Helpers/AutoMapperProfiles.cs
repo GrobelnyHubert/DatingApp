@@ -14,6 +14,11 @@ namespace DatingApp.API.Helpers
                 src => src.Photos.FirstOrDefault(p => p.IsMain).Url))
             .ForMember(dest => dest.Age, 
             opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
+             CreateMap<User, UserForHomeDto>()
+            .ForMember(d => d.PhotoUrl, opt => opt.MapFrom(
+                src => src.Photos.FirstOrDefault(p => p.IsMain).Url))
+            .ForMember(dest => dest.Age, 
+            opt => opt.MapFrom(src => src.DateOfBirth.CalculateAge()));
             CreateMap<User, UserForDetailedDto>()
             .ForMember(d => d.PhotoUrl, opt => opt.MapFrom(
                 src => src.Photos.FirstOrDefault(p => p.IsMain).Url))
@@ -28,6 +33,7 @@ namespace DatingApp.API.Helpers
             CreateMap<Message, MessageToReturnDto>()
                 .ForMember(m => m.SenderPhotoUrl, opt => opt.MapFrom(u => u.Sender.Photos.FirstOrDefault(p=> p.IsMain).Url))
                 .ForMember(m => m.RecipentPhotoUrl, opt => opt.MapFrom(u => u.Recipient.Photos.FirstOrDefault(p=> p.IsMain).Url));
+           
         }
     }
 }

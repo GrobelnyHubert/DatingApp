@@ -4,16 +4,16 @@
       <p>No Messages yet</p>
     </div>
     <ul class="chat">
-      <li *ngFor="let message of messages">
+      <li *ngFor="let message of messages; let i = index" class="{{i}}">
         <div *ngIf="message.senderId == recipientId">
-          <span class="chat-img float-left">
-            <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnownAs}}" class="rounded-circle">
+          <span class="chat-img float-left mr-2">
+            <img src="{{message.senderPhotoUrl|| '../../../../../assets/user.png'}}" alt="{{message.senderKnownAs}}" class="rounded-circle">
           </span>
           <div class="chat-body">
             <div class="header">
               <strong class="primary-font">{{message.senderKnownAs}}</strong>
               <small class="text-muted float-right">
-                <span class="fa fa-clock-o">{{message.messageSent}}</span>
+                <span class="fa fa-clock-o">{{message.messageSent | timeago}}</span>
               </small>
             </div>
             <p>{{message.content}}</p>
@@ -22,14 +22,14 @@
 
         <div *ngIf="message.senderId != recipientId">
           <span class="chat-img float-right">
-            <img src="{{message.senderPhotoUrl}}" alt="{{message.senderKnownAs}}" class="rounded-circle">
+            <img src="{{message.senderPhotoUrl|| '../../../../../assets/user.png'}}" alt="{{message.senderKnownAs}}" class="rounded-circle">
           </span>
           <div class="chat-body">
             <div class="header">
               <small class="text-muted">
-                <span class="fa fa-clock-o">{{message.messageSent}}</span>
+                <span class="fa fa-clock-o">{{message.messageSent | timeago}}</span>
                 <span *ngIf="!message.isRead" class="text-danger">(unread)</span>
-                <span *ngIf="message.isRead" class="text-success">(Read {{message.dateRead}}</span>
+                <span *ngIf="message.isRead" class="text-success">(Read {{message.dateRead | timeago}})</span>
               </small>
               <strong class="primary-font float-right">{{message.senderKnownAs}}</strong>
             </div>
