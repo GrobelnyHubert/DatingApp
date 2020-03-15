@@ -21,6 +21,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 
+
 namespace DatingApp.API
 {
     public class Startup
@@ -32,10 +33,29 @@ namespace DatingApp.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        public void ConfigureDevelopmentServices(IServiceCollection services)
+        {
+          //  services.AddDbContext<DataContext>(x => x.UseSqlite("Data Source=datingapp.db"));
+
+              services.AddDbContext<DataContext>(x =>  {
+                x.UseLazyLoadingProxies();
+                x.UseMySql("Server=localhost; Database=datingapp; Uid=hubert; Pwd=HubertG123!");
+              });
+
+            ConfigureServices(services);
+        }
+         public void ConfigureProductionServices(IServiceCollection services)
+        {
+            services.AddDbContext<DataContext>(x => {
+                x.UseLazyLoadingProxies();
+                x.UseMySql("Server=localhost; Database=datingapp; Uid=hubert; Pwd=HubertG123!");
+            });
+
+            ConfigureServices(services);
+        }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(x => x.UseSqlite("Data Source=datingapp.db"));                                                   
+                                                        
             services.AddControllers().AddNewtonsoftJson(opt =>{
                 opt.SerializerSettings.ReferenceLoopHandling =
                 Newtonsoft.Json.ReferenceLoopHandling.Ignore;
@@ -86,6 +106,9 @@ namespace DatingApp.API
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseAuthentication();
 
             app.UseAuthorization();
@@ -93,6 +116,7 @@ namespace DatingApp.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }
